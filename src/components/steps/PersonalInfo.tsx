@@ -1,13 +1,14 @@
 import { useFormik } from "formik";
 import { personalInfoSchema } from "../../schemas/personalInfoSchema";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { HeadTitle } from "../HeadTitle";
+import { StepType } from "../../App";
 
-const onSubmit = async (values, actions) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
+type PersonalInfoTypes = {
+  goToNextStep: (step: StepType) => void;
 };
 
-const SignUpForm = () => {
+const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -15,16 +16,14 @@ const SignUpForm = () => {
       phoneNumber: "",
     },
     validationSchema: personalInfoSchema,
-    onSubmit: onSubmit,
+    onSubmit: () => goToNextStep("Plan"),
   });
   return (
     <div className="formContainer">
-      <Typography variant="h5" className="text1" gutterBottom>
-        Personal info
-      </Typography>
-      <Typography variant="subtitle2" className="text2" gutterBottom>
-        Please provide your name, email adress and phone number.
-      </Typography>
+      <HeadTitle
+        title="Personal info"
+        paragraph="Please provide your name, email adress and phone number."
+      />
       <form onSubmit={formik.handleSubmit}>
         <div className="bars">
           <TextField
@@ -70,11 +69,11 @@ const SignUpForm = () => {
         </div>
 
         <Button variant="contained" size="small" type="submit">
-          Submit
+          Next Step
         </Button>
       </form>
     </div>
   );
 };
 
-export default SignUpForm;
+export default PersonalInfo;

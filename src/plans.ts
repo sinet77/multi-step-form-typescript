@@ -2,7 +2,7 @@ export const avaiablePlans = [
   {
     id: "Arcade",
     title: "Arcade",
-    icon: "src/assets/icon-arcade.svg",
+    icon: "src/assets/images/icon-arcade.svg",
     price: {
       monthly: 9,
       yearly: 90,
@@ -11,7 +11,7 @@ export const avaiablePlans = [
   {
     id: "Advanced",
     title: "Advanced",
-    icon: "src/assets/icon-advanced.svg",
+    icon: "src/assets/images/icon-advanced.svg",
     price: {
       monthly: 12,
       yearly: 120,
@@ -20,7 +20,7 @@ export const avaiablePlans = [
   {
     id: "Pro",
     title: "Pro",
-    icon: "src/assets/icon-pro.svg",
+    icon: "src/assets/images/icon-pro.svg",
     price: {
       monthly: 15,
       yearly: 150,

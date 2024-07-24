@@ -1,4 +1,4 @@
-import { StepType } from "../../App";
+import { StepType } from "../App";
 import { Step } from "./OneStep";
 
 type CurrentStepType = {

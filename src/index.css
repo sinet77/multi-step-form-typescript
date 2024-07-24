@@ -23,11 +23,6 @@
   box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
 }
 
-label {
-  font-size: 13px;
-  padding-bottom: 50px;
-}
-
 .step-container {
   background-image: url("/src/assets/images/bg-sidebar-desktop.svg");
   min-width: 300px;
@@ -131,15 +126,7 @@ label {
   border-width: 1px;
 }
 
-.bars input {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-}
-
 .next-button {
-  width: 100px;
-  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,7 +141,6 @@ label {
   display: flex;
   cursor: pointer;
   border-radius: 5px;
-  border: none;
   background-color: hsl(231, 100%, 99%);
   color: hsl(213, 96%, 18%);
   font-weight: 600;
@@ -162,7 +148,6 @@ label {
 
 .next-button-container {
   display: flex;
-  justify-content: flex-end;
   margin-top: 20px;
 }
 
@@ -203,11 +188,12 @@ label {
 
 .planButton {
   display: flex;
+  text-align: left;
   flex-direction: column;
   padding: 10px;
-  width: 110px;
+  width: 100%;
   height: 100%;
-  margin-right: 20px;
+  margin-right: 15px;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid hsl(231, 11%, 63%);
@@ -243,10 +229,17 @@ label {
   font-weight: 500;
 }
 
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+}
+
 .check-box-item {
   display: flex;
   justify-content: space-between;
-  width: 390px;
+  width: 100%;
   margin-bottom: 10px;
   padding: 15px;
   border-radius: 7px;
@@ -257,15 +250,11 @@ label {
   background-color: hsl(231, 11%, 93%);
   border: 2px solid blueviolet;
 }
-.check-box {
-  cursor: pointer;
-  margin-right: 15px;
-  border: 1px solid hsl(231, 11%, 90%);
-}
 
 .paragraph {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 .parent {
   display: flex;
@@ -310,67 +299,10 @@ label {
   border-radius: 10px;
   border: 1px solid black;
 }
-.toggle-label {
-  color: hsl(231, 11%, 63%);
-  font-size: 14px;
-  font-weight: 500;
-}
+
 .bold-text {
   color: hsl(213, 96%, 18%);
   font-weight: bold;
-}
-.together-back {
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 25px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-/* Hide default HTML checkbox */
-.together-back input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.toggle-switch {
-  position: absolute;
-  cursor: pointer;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: hsl(213, 96%, 18%);
-  height: 25px;
-  transition: 0.4s;
-}
-
-.toggle-switch:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-}
-input:checked + .toggle-switch:before {
-  transform: translateX(21px);
-}
-
-/* Rounded sliders */
-.toggle-switch,
-.round {
-  border-radius: 34px;
-}
-
-.toggle-switch.round:before {
-  border-radius: 50%;
 }
 
 .together {

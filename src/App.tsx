@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import SignUpForm from "./components/form/SignUpForm";
-import { StepBar } from "./components/form/StepBar";
+import PersonalInfo from "./components/steps/PersonalInfo";
+import { StepBar } from "./components/StepBar";
+import SelectYourPlan from "./components/steps/SelectYourPlan";
+import { PickAddOns } from "./components/steps/PickAddOns";
 
 export type StepType =
   | "PersonalInfo"
@@ -12,6 +14,7 @@ export type StepType =
 
 function App() {
   const [step, setStep] = useState<StepType>("PersonalInfo");
+  const [selectedMode, setSelectedMode] = useState<string>("monthly");
 
   const onStepChange = (step: StepType) => {
     setStep(step);
@@ -21,23 +24,25 @@ function App() {
     <div className="background">
       <div className="white-board">
         <StepBar currentStep={step} />
-        <SignUpForm />;
-        {/* {step === "PersonalInfo" && (
+        {step === "PersonalInfo" && (
           <PersonalInfo goToNextStep={onStepChange} />
         )}
         {step === "Plan" && (
-          <SelectPlan
+          <SelectYourPlan
             goToPreviousStep={onStepChange}
             goToNextStep={onStepChange}
+            selectMode={setSelectedMode}
+            selectedMode={selectedMode}
           />
         )}
         {step === "Addons" && (
           <PickAddOns
             goToPreviousStep={onStepChange}
             goToNextStep={onStepChange}
+            chosenMode={selectedMode}
           />
         )}
-        {step === "Summary" && (
+        {/* {step === "Summary" && (
           <Summary
             goToPreviousStep={onStepChange}
             goToNextStep={onStepChange}

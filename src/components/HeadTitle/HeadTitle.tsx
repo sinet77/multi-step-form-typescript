@@ -1,11 +1,7 @@
 import { Typography } from "@mui/material";
+import { HeadTitleProps } from "./HeadTitle.types";
 
-type HeadTitleTypes = {
-  title: string;
-  paragraph: string;
-};
-
-export const HeadTitle = ({ title, paragraph }: HeadTitleTypes) => {
+export const HeadTitle = ({ title, paragraph }: HeadTitleProps) => {
   return (
     <>
       <Typography variant="h5" className="text1" gutterBottom>

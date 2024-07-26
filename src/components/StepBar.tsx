@@ -1,5 +1,5 @@
 import { StepType } from "../App";
-import { Step } from "./OneStep";
+import { Step } from "./OneStep/OneStep";
 
 type CurrentStepType = {
   currentStep: StepType;

@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
-import { personalInfoSchema } from "../../schemas/personalInfoSchema";
-import { Button, TextField } from "@mui/material";
-import { HeadTitle } from "../HeadTitle";
-import { StepType } from "../../App";
+import { personalInfoSchema } from "../../../schemas/personalInfoSchema";
+import { Box, Button, TextField } from "@mui/material";
+import { HeadTitle } from "../../HeadTitle/HeadTitle";
+import { StepType } from "../../../App";
+import * as styles from "./Main.styles";
 
 type PersonalInfoTypes = {
   goToNextStep: (step: StepType) => void;
@@ -16,21 +17,23 @@ const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
       phoneNumber: "",
     },
     validationSchema: personalInfoSchema,
-    onSubmit: () => goToNextStep("Plan"),
+    onSubmit: (values) => {
+      console.log("values", values);
+      goToNextStep("Plan");
+    },
   });
   return (
-    <div className="formContainer">
+    <Box sx={styles.FormContainer}>
       <HeadTitle
         title="Personal info"
         paragraph="Please provide your name, email adress and phone number."
       />
-      <form onSubmit={formik.handleSubmit}>
-        <div className="bars">
+      <Box component="form" onSubmit={formik.handleSubmit}>
+        <Box>
           <TextField
             fullWidth
             margin="dense"
             id="name"
-            name="name"
             label="Name"
             variant="outlined"
             placeholder="e.g. Stephen King"
@@ -43,7 +46,6 @@ const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
             fullWidth
             margin="dense"
             id="email"
-            name="email"
             label="Email Address"
             variant="outlined"
             placeholder="e.g. stephenking@lorem.com"
@@ -55,7 +57,6 @@ const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
             fullWidth
             margin="dense"
             id="phoneNumber"
-            name="phoneNumber"
             label="Phone Number"
             variant="outlined"
             placeholder="e.g. +1 234 567 890"
@@ -66,13 +67,13 @@ const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
             helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
             sx={{ marginBottom: 3 }}
           />
-        </div>
+        </Box>
 
         <Button variant="contained" size="small" type="submit">
           Next Step
         </Button>
-      </form>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

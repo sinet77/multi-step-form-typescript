@@ -1,10 +1,6 @@
-type StepTypes = {
-  number: number;
-  info: string;
-  isSelected?: boolean;
-};
+import { StepProps } from "./OneStep.types";
 
-export const Step = ({ number, info, isSelected }: StepTypes) => {
+export const Step = ({ number, info, isSelected }: StepProps) => {
   return (
     <div className="step">
       <div className={`circleButton ${isSelected && "selectedCircle"}`}>

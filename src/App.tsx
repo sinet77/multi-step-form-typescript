@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import PersonalInfo from "./components/steps/PersonalInfo";
+import PersonalInfo from "./components/steps/YOURINFO/PersonalInfo";
 import { StepBar } from "./components/StepBar";
-import SelectYourPlan from "./components/steps/SelectYourPlan";
-import { PickAddOns } from "./components/steps/PickAddOns";
+import SelectYourPlan from "./components/steps/SELECTPLAN/SelectYourPlan";
+import { PickAddOns } from "./components/steps/ADDONS/PickAddOns";
 
 export type StepType =
   | "PersonalInfo"
@@ -12,12 +12,20 @@ export type StepType =
   | "Summary"
   | "Finish";
 
+export type Mode = "monthly" | "yearly";
+
 function App() {
   const [step, setStep] = useState<StepType>("PersonalInfo");
-  const [selectedMode, setSelectedMode] = useState<string>("monthly");
+  const [selectedMode, setSelectedMode] = useState<Mode>("monthly");
+  const [selectedPlanId, setSelectedPlanId] = useState<string | undefined>();
+  const [selectedAddOnsId, setSelectedAddOnsId] = useState<string[]>([]);
 
   const onStepChange = (step: StepType) => {
     setStep(step);
+  };
+
+  const onPlanSelect = (planId: string) => {
+    setSelectedPlanId(planId);
   };
 
   return (
@@ -33,6 +41,8 @@ function App() {
             goToNextStep={onStepChange}
             selectMode={setSelectedMode}
             selectedMode={selectedMode}
+            currentPlanId={selectedPlanId}
+            onPlanSelect={onPlanSelect}
           />
         )}
         {step === "Addons" && (
@@ -40,6 +50,8 @@ function App() {
             goToPreviousStep={onStepChange}
             goToNextStep={onStepChange}
             chosenMode={selectedMode}
+            selectedAddOnsId={selectedAddOnsId}
+            setSelectedAddOnsId={setSelectedAddOnsId}
           />
         )}
         {/* {step === "Summary" && (

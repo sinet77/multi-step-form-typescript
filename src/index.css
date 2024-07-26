@@ -36,7 +36,7 @@
   padding-top: 30px;
   padding-right: 50px;
   position: relative;
-  max-width: 500px;
+  max-width: 100%;
 }
 
 .circleButton {
@@ -181,10 +181,6 @@
 .buttons {
   display: flex;
 }
-.clicked {
-  border: 1px solid hsl(213, 96%, 18%);
-  background-color: hsl(280, 13%, 91%);
-}
 
 .planButton {
   display: flex;
@@ -207,6 +203,11 @@
 .planButton img {
   width: 30px;
   height: auto;
+}
+
+.clicked {
+  border: 2px solid hsl(213, 96%, 18%);
+  background-color: hsl(280, 13%, 91%);
 }
 
 .buttonText {

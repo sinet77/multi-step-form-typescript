@@ -13,17 +13,12 @@ export const AddOn = ({
 }: AddOnProps) => {
   return (
     <Box className={"check-box-item " + highlighted} onClick={onSelect}>
-      <Checkbox
-        sx={styles.AddonCheckbox}
-        className="check-box"
-        checked={checked}
-        size="small"
-      />
-      <div className="paragraph">
-        <div className="title">{title}</div>
-        <div className="sub-title">{info}</div>
-      </div>
-      <div className="up-price">{price}</div>
+      <Checkbox sx={styles.AddonCheckbox} checked={checked} size="small" />
+      <Box sx={styles.Paragraph}>
+        <Box sx={styles.Title}>{title}</Box>
+        <Box sx={styles.SubTitle}>{info}</Box>
+      </Box>
+      <Box sx={styles.UpPrice}>{price}</Box>
     </Box>
   );
 };

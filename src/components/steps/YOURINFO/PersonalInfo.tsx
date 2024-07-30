@@ -2,24 +2,17 @@ import { useFormik } from "formik";
 import { personalInfoSchema } from "../../../schemas/personalInfoSchema";
 import { Box, Button, TextField } from "@mui/material";
 import { HeadTitle } from "../../HeadTitle/HeadTitle";
-import { StepType } from "../../../App";
 import * as styles from "./Main.styles";
+import { useAppContext } from "../../../context/appContext";
 
-type PersonalInfoTypes = {
-  goToNextStep: (step: StepType) => void;
-};
-
-const PersonalInfo = ({ goToNextStep }: PersonalInfoTypes) => {
+const PersonalInfo = () => {
+  const { onStepChange, personalInfo, setPersonalInfo } = useAppContext();
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      phoneNumber: "",
-    },
+    initialValues: personalInfo,
     validationSchema: personalInfoSchema,
     onSubmit: (values) => {
-      console.log("values", values);
-      goToNextStep("Plan");
+      setPersonalInfo(values);
+      onStepChange("Plan");
     },
   });
   return (

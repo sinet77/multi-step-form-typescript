@@ -4,5 +4,5 @@ export type PlanProps = {
   price: string;
   bonus?: string;
   onSelect: () => void;
-  highlighted?: string;
+  isHighlighted?: boolean;
 };

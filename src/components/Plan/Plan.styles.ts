@@ -11,7 +11,6 @@ export const PlanButton: SxProps = {
   borderRadius: "5px",
   cursor: "pointer",
   border: "1px solid hsl(231, 11%, 63%)",
-  transition: "background-color 0.3s, border 0.3s",
   "&:hover": {
     border: "1px solid hsl(213, 96%, 18%)",
     backgroundColor: "hsl(288, 13%, 95%)",
@@ -20,7 +19,12 @@ export const PlanButton: SxProps = {
     width: "30px",
     height: "auto",
   },
-};
+} as const;
+
+export const Clicked: SxProps = {
+  border: "2px solid hsl(213, 96%, 18%)",
+  backgroundColor: "hsl(280, 13%, 91%)",
+} as const;
 
 export const ButtonText: SxProps = {
   color: "hsl(213, 96%, 18%)",

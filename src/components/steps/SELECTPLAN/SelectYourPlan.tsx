@@ -1,39 +1,31 @@
 import { Box, Button } from "@mui/material";
-import { Mode, StepType } from "../../../App";
 import { avaiablePlans } from "../../../plans";
 import { HeadTitle } from "../../HeadTitle/HeadTitle";
 import { Plan } from "../../Plan/Plan";
 import { ToggleSwitch } from "../../ToggleSwitch";
 import * as styles from "./Plans.styles";
+import { useAppContext } from "../../../context/appContext";
 
-type SelectYourPlanTypes = {
-  goToNextStep: (step: StepType) => void;
-  goToPreviousStep: (step: StepType) => void;
-  selectMode: (mode: Mode) => void;
-  selectedMode: Mode;
-  onPlanSelect: (planId: string) => void;
-  currentPlanId: string | undefined;
-};
+const SelectYourPlan = () => {
+  const {
+    onStepChange,
+    selectedMode,
+    setSelectedMode,
+    setSelectedPlanId,
+    selectedPlanId,
+  } = useAppContext();
 
-const SelectYourPlan = ({
-  goToNextStep,
-  goToPreviousStep,
-  selectedMode,
-  selectMode,
-  onPlanSelect,
-  currentPlanId,
-}: SelectYourPlanTypes) => {
   const monthPlan = () => {
     return selectedMode === "monthly";
   };
 
   function onChangeToggleSwitch() {
     const newMode = monthPlan() ? "yearly" : "monthly";
-    selectMode(newMode);
+    setSelectedMode(newMode);
   }
 
   function handlePlanSelect(planId: string) {
-    onPlanSelect(planId);
+    setSelectedPlanId(planId);
   }
 
   return (
@@ -48,7 +40,7 @@ const SelectYourPlan = ({
             key={plan.id}
             title={plan.title}
             icon={plan.icon}
-            highlighted={currentPlanId === plan.id ? "clicked" : ""}
+            isHighlighted={selectedPlanId === plan.id}
             price={
               monthPlan()
                 ? `$${plan.price.monthly}/mo`
@@ -68,7 +60,7 @@ const SelectYourPlan = ({
           className="back-button"
           variant="outlined"
           size="small"
-          onClick={() => goToPreviousStep("PersonalInfo")}
+          onClick={() => onStepChange("PersonalInfo")}
         >
           Go back
         </Button>
@@ -77,7 +69,7 @@ const SelectYourPlan = ({
           className="next-button"
           variant="contained"
           size="small"
-          onClick={() => currentPlanId && goToNextStep("Addons")}
+          onClick={() => selectedPlanId && onStepChange("Addons")}
         >
           Next step
         </Button>

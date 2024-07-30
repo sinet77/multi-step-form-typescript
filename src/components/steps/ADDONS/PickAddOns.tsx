@@ -1,25 +1,14 @@
 import { Box, Button } from "@mui/material";
-import { StepType } from "../../../App";
 import { avaiableAddons } from "../../../plans";
 import { AddOn } from "../../AddOn/AddOn";
 import { HeadTitle } from "../../HeadTitle/HeadTitle";
 import * as styles from "./PickAddOns.styles";
+import { useAppContext } from "../../../context/appContext";
 
-type SelectYourAddOnsTypes = {
-  goToNextStep: (step: StepType) => void;
-  goToPreviousStep: (step: StepType) => void;
-  chosenMode: "yearly" | "monthly";
-  selectedAddOnsId: string[];
-  setSelectedAddOnsId: (addOn: string[]) => void;
-};
+export const PickAddOns = () => {
+  const { onStepChange, selectedMode, setSelectedAddOnsId, selectedAddOnsId } =
+    useAppContext();
 
-export const PickAddOns = ({
-  goToNextStep,
-  goToPreviousStep,
-  chosenMode,
-  setSelectedAddOnsId,
-  selectedAddOnsId,
-}: SelectYourAddOnsTypes) => {
   function handleAddOnSelect(addonId: string) {
     const isSelected = selectedAddOnsId.find((addon) => addon === addonId);
     if (isSelected) {
@@ -42,7 +31,7 @@ export const PickAddOns = ({
           title={addon.title}
           info={addon.description}
           price={
-            chosenMode === "monthly"
+            selectedMode === "monthly"
               ? `$${addon.price.monthly}/mo`
               : `$${addon.price.yearly}/yr`
           }
@@ -59,7 +48,7 @@ export const PickAddOns = ({
             className="back-button"
             variant="outlined"
             size="small"
-            onClick={() => goToPreviousStep("Plan")}
+            onClick={() => onStepChange("Plan")}
           >
             Go back
           </Button>
@@ -70,7 +59,7 @@ export const PickAddOns = ({
             className="next-button"
             variant="contained"
             size="small"
-            onClick={() => goToNextStep("Summary")}
+            onClick={() => onStepChange("Summary")}
           >
             Next step
           </Button>

@@ -1,26 +1,18 @@
 import { Box, Button } from "@mui/material";
 import { HeadTitle } from "../../HeadTitle/HeadTitle";
-import { StepType } from "../../../App";
 import * as styles from "./Summary.styles";
 import { SummaryAddOn } from "./SummaryAddOn";
+import { useAppContext } from "../../../context/appContext";
 
-type SummaryProps = {
-  goToNextStep: (step: StepType) => void;
-  goToPreviousStep: (step: StepType) => void;
-  selectedPlanId: string | undefined;
-  selectedAddOnsId: string[];
-  selectedMode: "monthly" | "yearly";
-  getPriceFromThePlan: () => string | undefined;
-};
-
-const Summary = ({
-  goToNextStep,
-  goToPreviousStep,
-  selectedPlanId,
-  selectedAddOnsId,
-  selectedMode,
-  getPriceFromThePlan,
-}: SummaryProps) => {
+const Summary = () => {
+  const {
+    getTotalPrice,
+    onStepChange,
+    selectedPlanId,
+    selectedAddOnsId,
+    selectedMode,
+    getPriceFromThePlan,
+  } = useAppContext();
   return (
     <Box sx={styles.SummaryContainer}>
       <HeadTitle
@@ -37,7 +29,7 @@ const Summary = ({
             <Button
               sx={styles.ChangeButton}
               size="small"
-              onClick={() => goToPreviousStep("Plan")}
+              onClick={() => "Plan"}
             >
               Change
             </Button>
@@ -49,7 +41,7 @@ const Summary = ({
       </Box>
       <Box sx={styles.TotalSum}>
         <Box sx={styles.Total}>Total (per month)</Box>
-        <Box sx={styles.SumPrice}></Box>
+        <Box sx={styles.SumPrice}>{getTotalPrice()}</Box>
       </Box>
 
       <Box sx={styles.ButtonContainer}>
@@ -57,7 +49,7 @@ const Summary = ({
           className="back-button"
           variant="outlined"
           size="small"
-          onClick={() => goToPreviousStep("Addons")}
+          onClick={() => onStepChange("Addons")}
         >
           Go back
         </Button>
@@ -66,7 +58,7 @@ const Summary = ({
           className="next-button"
           variant="contained"
           size="small"
-          onClick={() => goToNextStep("Finish")}
+          onClick={() => onStepChange("Finish")}
         >
           Next step
         </Button>

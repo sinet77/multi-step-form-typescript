@@ -8,14 +8,19 @@ export const Plan = ({
   price,
   bonus,
   onSelect,
-  highlighted,
+  isHighlighted,
 }: PlanProps) => {
+  const combinedStyles = {
+    ...style.PlanButton,
+    ...(isHighlighted ? style.Clicked : {}),
+  };
+
   return (
-    <div className={"planButton " + highlighted} onClick={onSelect}>
+    <Box sx={combinedStyles} onClick={onSelect}>
       <img src={icon} alt="" />
       <Box sx={style.ButtonText}>{title}</Box>
       <Box sx={style.ButtonPrice}>{price}</Box>
       <Box sx={style.FreeMonths}>{bonus}</Box>
-    </div>
+    </Box>
   );
 };

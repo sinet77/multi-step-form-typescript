@@ -17,7 +17,7 @@ export const Plan = ({
 
   return (
     <Box sx={combinedStyles} onClick={onSelect}>
-      <img src={icon} alt="" />
+      <img src={icon} alt={title} />
       <Box sx={style.ButtonText}>{title}</Box>
       <Box sx={style.ButtonPrice}>{price}</Box>
       <Box sx={style.FreeMonths}>{bonus}</Box>

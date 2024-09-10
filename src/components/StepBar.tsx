@@ -6,6 +6,9 @@ type CurrentStepType = {
 };
 
 export const StepBar = ({ currentStep }: CurrentStepType) => {
+  {
+    /* TODO: zmienic na BOX z MUI */
+  }
   return (
     <div className="step-container">
       <Step

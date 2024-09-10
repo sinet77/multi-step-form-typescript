@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import { avaiableAddons } from "../../../plans";
 import * as style from "./Summary.styles";
+import { Mode } from "../../../App";
 
 type AddOnPriceProps = {
-  mode: "monthly" | "yearly";
+  mode: Mode;
   selectedAddOnsId: string[];
 };
 

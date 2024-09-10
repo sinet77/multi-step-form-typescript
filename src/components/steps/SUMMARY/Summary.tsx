@@ -29,7 +29,7 @@ const Summary = () => {
             <Button
               sx={styles.ChangeButton}
               size="small"
-              onClick={() => "Plan"}
+              onClick={() => onStepChange("Plan")}
             >
               Change
             </Button>

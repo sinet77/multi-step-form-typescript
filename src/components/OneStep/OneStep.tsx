@@ -1,5 +1,6 @@
 import { StepProps } from "./OneStep.types";
 
+// TODO: przepisz komponent na MUI
 export const Step = ({ number, info, isSelected }: StepProps) => {
   return (
     <div className="step">

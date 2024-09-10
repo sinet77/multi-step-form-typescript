@@ -39,9 +39,10 @@ export const PickAddOns = () => {
             selectedAddOnsId.includes(addon.id) ? "add-ons-bar-selected" : ""
           }
           onSelect={() => handleAddOnSelect(addon.id)}
-          checked={selectedAddOnsId.includes(addon.id) ? true : false}
+          checked={selectedAddOnsId.includes(addon.id)}
         />
       ))}
+      {/* TODO: przerobic na MUI */}
       <div className="button-container">
         <div className="back-button-container">
           <Button

@@ -13,12 +13,14 @@ type AppContextType = {
   setSelectedAddOnsId: (addOns: string[]) => void;
   getPriceFromThePlan: () => string | undefined;
   getTotalPrice: () => number | undefined;
-  personalInfo: { name: string; email: string; phoneNumber: string };
-  setPersonalInfo: (info: {
-    name: string;
-    email: string;
-    phoneNumber: string;
-  }) => void;
+  personalInfo: UserPersonalInfo;
+  setPersonalInfo: (info: UserPersonalInfo) => void;
+};
+
+type UserPersonalInfo = {
+  name: string;
+  email: string;
+  phoneNumber: string;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -29,11 +31,7 @@ const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const [selectedPlanId, setSelectedPlanId] = useState<string | undefined>();
   const [selectedAddOnsId, setSelectedAddOnsId] = useState<string[]>([]);
 
-  const [personalInfo, setPersonalInfo] = useState<{
-    name: string;
-    email: string;
-    phoneNumber: string;
-  }>({
+  const [personalInfo, setPersonalInfo] = useState<UserPersonalInfo>({
     name: "",
     email: "",
     phoneNumber: "",
@@ -94,6 +92,7 @@ const AppContextProvider = ({ children }: { children: ReactNode }) => {
 
 export default AppContextProvider;
 
+//Mozna przenieść do innego pliku
 export const useAppContext = () => {
   const context = useContext(AppContext);
 

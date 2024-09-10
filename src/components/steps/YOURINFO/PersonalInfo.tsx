@@ -8,6 +8,7 @@ import { useAppContext } from "../../../context/appContext";
 const PersonalInfo = () => {
   const { onStepChange, personalInfo, setPersonalInfo } = useAppContext();
   const formik = useFormik({
+    validateOnMount: true,
     initialValues: personalInfo,
     validationSchema: personalInfoSchema,
     onSubmit: (values) => {
@@ -61,8 +62,12 @@ const PersonalInfo = () => {
             sx={{ marginBottom: 3 }}
           />
         </Box>
-
-        <Button variant="contained" size="small" type="submit">
+        <Button
+          disabled={!formik.isValid}
+          variant="contained"
+          size="small"
+          type="submit"
+        >
           Next Step
         </Button>
       </Box>

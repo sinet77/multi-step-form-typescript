@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 const End = () => {
   return (
     <Box sx={style.Finish}>
+      {/* TODO: BOX z backgroundImage -> to jest wizualna ikona */}
       <img
         src="src/assets/images/icon-thank-you.svg"
         alt="tick-in-circle-icon"
